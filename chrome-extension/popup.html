@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DexScreener Data Capture</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 400px;
+      padding: 10px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .button-group {
+      display: flex;
+      gap: 5px;
+    }
+    button {
+      padding: 8px 12px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 10px;
+      padding: 8px;
+      background-color: #f1f1f1;
+      border-radius: 4px;
+    }
+    .data-container {
+      margin-top: 10px;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .export-options {
+      margin-top: 10px;
+    }
+    .tab-container {
+      margin-top: 10px;
+    }
+    .tab-buttons {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+    }
+    .tab-button {
+      padding: 8px 16px;
+      background-color: #f1f1f1;
+      border: none;
+      cursor: pointer;
+    }
+    .tab-button.active {
+      background-color: #4285f4;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+      padding: 10px 0;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>DexScreener Data Capture</h2>
+    
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-button active" data-tab="requests">网络请求</button>
+        <button class="tab-button" data-tab="page-data">页面数据</button>
+      </div>
+      
+      <div class="tab-content active" id="requests-tab">
+        <div class="button-group">
+          <button id="start-capture">开始捕获</button>
+          <button id="stop-capture" disabled>停止捕获</button>
+          <button id="clear-data">清除数据</button>
+        </div>
+        
+        <div class="status" id="request-status">状态: 未开始捕获</div>
+        
+        <div class="data-container" id="request-data">
+          <p>捕获的请求将显示在这里...</p>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="page-data-tab">
+        <div class="button-group">
+          <button id="get-page-data">获取页面数据</button>
+          <button id="start-observing">开始观察DOM</button>
+          <button id="stop-observing" disabled>停止观察</button>
+        </div>
+        
+        <div class="status" id="page-status">状态: 未获取数据</div>
+        
+        <div class="data-container" id="page-data-container">
+          <p>页面数据将显示在这里...</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="export-options">
+      <button id="export-json">导出为JSON</button>
+      <button id="export-csv">导出为CSV</button>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html> 
